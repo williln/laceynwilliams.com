@@ -1,0 +1,8 @@
+{% for job in jobs %}
+	<div>
+		<h2>{{ job.title}}</h2>
+		<h3>{{ job.company }} | {{ job.city }}, {{ job.state }}</h3>
+		<p>{{ job.description }}</p>
+		<p>{{ job.start_date|date:"F Y" }}-{{ job.end_date|date:"F Y" }}
+	</div>
+{% endfor %}
