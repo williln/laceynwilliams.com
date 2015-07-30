@@ -25,6 +25,8 @@ class Talk(models.Model):
     added_date = models.DateTimeField(default=timezone.now)
     talk_date = models.DateTimeField(default=timezone.now)
     url = models.URLField(max_length=200)
+    slides = models.URLField(max_length=200)
+    video = models.URLField(max_length=200)
 
     def __str__(self):
         return self.title

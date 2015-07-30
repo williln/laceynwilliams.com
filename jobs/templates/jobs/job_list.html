@@ -3,7 +3,7 @@
 {% block title %}{% endblock %}
 
 {% block content %}
-	<h2>Resume</h2>
+	<h2>Work</h2>
 	{% for job in jobs %}
 		<div>
 			<h3>{{ job.title}}</h3>
@@ -18,7 +18,7 @@
 		</div>
 	{% endfor %}
 
-	<h2>Writing</h2>
+	<h2>Write</h2>
 	{% for publication in publications %}
 		<div>
 			<h3>{{ publication.title}}</h3>
@@ -26,6 +26,24 @@
 				{{ publication.publications }}</a>, 
 				{{ publication.publish_date|date:"F d, Y" }}</h4>
 			<p>{{ publication.description }}</p>
+		</div>
+	{% endfor %}
+
+	<h2>Speak</h2>
+	{% for talk in talks %}
+		<div>
+			<h3>{{ talk.title}}</h3>
+			<h4><a href="{{ talk.url }}">
+				{{ talk.conference }}</a>, 
+				{{ talk.talk_date|date:"F d, Y" }} 
+				{% if talk.slides %}
+					(<a href="{{ talk.slides }}">Slides</a>, 
+				{% endif %}
+				{% if talk.video %}
+					<a href="{{ talk.video }}">Video</a>)
+				{% endif %}
+			</h4>
+			<p>{{ talk.description }}</p>
 		</div>
 	{% endfor %}
 {% endblock %}
