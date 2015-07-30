@@ -4,9 +4,9 @@
 
 {% block content %}
 	{% if jobs %}
-	<h2>Work</h2>
+		<h2>Work</h2>
 		{% for job in jobs %}
-			<div>
+			<div id="work">
 				<h3>{{ job.title}}</h3>
 				<h4><a href="{{ job.url }}">{{ job.company }}</a> | {{ job.city }}, {{ job.state }}</h4>
 				<p>{{ job.description|linebreaks }}</p>
@@ -23,7 +23,7 @@
 	{% if publications %}
 		<h2>Write</h2>
 		{% for publication in publications %}
-			<div>
+			<div id="write">
 				<h3>{{ publication.title}}</h3>
 				<h4><a href="{{ publication.url }}">
 					{{ publication.publications }}</a> | 
@@ -36,7 +36,7 @@
 	{% if talks %}
 		<h2>Speak</h2>
 		{% for talk in talks %}
-			<div>
+			<div id="talks">
 				<h3>{{ talk.title}}</h3>
 				<h4><a href="{{ talk.url }}">
 					{{ talk.conference }}</a> |
@@ -56,7 +56,7 @@
 	{% if schools %}
 		<h2>Learn</h2>
 		{% for school in schools %}
-			<div>
+			<div id="schools">
 				<h3>{{ school.degree }}</h3>
 				<h4>{{ school.university }} | 
 					{{ school.grad_date|date:"Y" }}
