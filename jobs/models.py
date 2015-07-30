@@ -40,4 +40,15 @@ class Publication(models.Model):
     url = models.URLField(max_length=200)
 
     def __str__(self):
-        return self.title        
+        return self.title   
+
+class Education(models.Model):
+    university =  models.CharField(max_length=200) 
+    city = models.CharField(max_length=100)
+    state = models.CharField(max_length=2) 
+    grad_date = models.DateTimeField(default=timezone.now)
+    degree = models.CharField(max_length=200) 
+    notes = models.TextField()
+
+    def __str__(self):
+        return self.degree + ', ' + self.university

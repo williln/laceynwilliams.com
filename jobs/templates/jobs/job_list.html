@@ -3,47 +3,68 @@
 {% block title %}{% endblock %}
 
 {% block content %}
+	{% if jobs %}
 	<h2>Work</h2>
-	{% for job in jobs %}
-		<div>
-			<h3>{{ job.title}}</h3>
-			<h4><a href="{{ job.url }}">{{ job.company }}</a> | {{ job.city }}, {{ job.state }}</h4>
-			<p>{{ job.description }}</p>
-			<p>{{ job.start_date|date:"F Y" }} - 
-				{% if job.still_working %}
-					present 
-				{% else %}
-					{{ job.end_date|date:"F Y" }}
-				{% endif %}
-		</div>
-	{% endfor %}
+		{% for job in jobs %}
+			<div>
+				<h3>{{ job.title}}</h3>
+				<h4><a href="{{ job.url }}">{{ job.company }}</a> | {{ job.city }}, {{ job.state }}</h4>
+				<p>{{ job.description|linebreaks }}</p>
+				<p>{{ job.start_date|date:"F Y" }} - 
+					{% if job.still_working %}
+						present 
+					{% else %}
+						{{ job.end_date|date:"F Y" }}
+					{% endif %}
+			</div>
+		{% endfor %}
+	{% endif %}
 
-	<h2>Write</h2>
-	{% for publication in publications %}
-		<div>
-			<h3>{{ publication.title}}</h3>
-			<h4><a href="{{ publication.url }}">
-				{{ publication.publications }}</a>, 
-				{{ publication.publish_date|date:"F d, Y" }}</h4>
-			<p>{{ publication.description }}</p>
-		</div>
-	{% endfor %}
+	{% if publications %}
+		<h2>Write</h2>
+		{% for publication in publications %}
+			<div>
+				<h3>{{ publication.title}}</h3>
+				<h4><a href="{{ publication.url }}">
+					{{ publication.publications }}</a> | 
+					{{ publication.publish_date|date:"F d, Y" }}</h4>
+				<p>{{ publication.description|linebreaks }}</p>
+			</div>
+		{% endfor %}
+	{% endif %}
 
-	<h2>Speak</h2>
-	{% for talk in talks %}
-		<div>
-			<h3>{{ talk.title}}</h3>
-			<h4><a href="{{ talk.url }}">
-				{{ talk.conference }}</a>, 
-				{{ talk.talk_date|date:"F d, Y" }} 
-				{% if talk.slides %}
-					(<a href="{{ talk.slides }}">Slides</a>, 
+	{% if talks %}
+		<h2>Speak</h2>
+		{% for talk in talks %}
+			<div>
+				<h3>{{ talk.title}}</h3>
+				<h4><a href="{{ talk.url }}">
+					{{ talk.conference }}</a> |
+					{{ talk.talk_date|date:"F d, Y" }} 
+					{% if talk.slides %}
+						(<a href="{{ talk.slides }}">Slides</a>, 
+					{% endif %}
+					{% if talk.video %}
+						<a href="{{ talk.video }}">Video</a>)
+					{% endif %}
+				</h4>
+				<p>{{ talk.description|linebreaks }}</p>
+			</div>
+		{% endfor %}
+	{% endif %}
+
+	{% if schools %}
+		<h2>Learn</h2>
+		{% for school in schools %}
+			<div>
+				<h3>{{ school.degree }}</h3>
+				<h4>{{ school.university }} | 
+					{{ school.grad_date|date:"Y" }}
+				</h4>
+				{% if school.notes %}
+					<p>{{ school.notes|linebreaks }}</p>
 				{% endif %}
-				{% if talk.video %}
-					<a href="{{ talk.video }}">Video</a>)
-				{% endif %}
-			</h4>
-			<p>{{ talk.description }}</p>
-		</div>
-	{% endfor %}
+			</div>
+		{% endfor %}
+	{% endif %}
 {% endblock %}
